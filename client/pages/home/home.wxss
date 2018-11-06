@@ -1,0 +1,62 @@
+/* client/pages/home/home.wxss */
+.hot-image {
+  margin: 50rpx 0;
+  width: 66%;
+  height: 750rpx;
+}
+
+.hot-title {
+  color: #34373D;
+  opacity: 0.8;
+  font-size: 40rpx;
+  font-weight: bold;
+}
+
+.comment-row {
+  display: flex;
+  align-items: center;
+  margin: 50rpx;
+}
+
+.avatar {
+  width: 50rpx;
+  height: 50rpx;
+  border-radius: 50%;
+}
+
+.comment {
+  font-size: 28rpx;
+  margin-left: 20rpx;
+}
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  background: #fff;
+}
+
+.btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  height: 100rpx;
+  line-height: 100rpx;
+  justify-content: center;
+}
+
+.btn-text {
+  margin-left: 10rpx;
+  font-size: 30rpx;
+  font-weight: bold;
+  color: #34373D;
+}
+
+.btn-icon {
+  width: 30rpx;
+  height: 30rpx;
+  flex-shrink: 0;
+}

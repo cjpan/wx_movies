@@ -1,0 +1,9 @@
+<!--pages/movie/movie.wxml-->
+<image class='bg' src='/images/bg.png'></image>
+<navigator wx:for='{{movieList}}' wx:key='id' class='movie-card' url='/pages/detail/detail?id={{item.id}}'>
+  <image class='movie-image' src='{{item.image}}'></image>
+  <view class='movie-info'>
+    <view class='movie-title'>{{item.title}}</view>
+    <view class='movie-category'>{{item.category}}</view>
+  </view>
+</navigator>

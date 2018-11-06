@@ -1,0 +1,81 @@
+/* pages/detail/detail.wxss */
+.movie-card {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  top: 100rpx;
+  margin: 0 50rpx;
+  padding-bottom: 15rpx;
+  background: #fff;
+  box-shadow: 0 2rpx 13rpx 5rpx rgba(0,0,0,0.02);
+  height: 85%;
+}
+
+.movie-image {
+  position: relative;
+  top: -50rpx;
+  width: 240rpx;
+  height: 360rpx;
+}
+
+.movie-title  {
+  font-size: 38rpx;
+  line-height: 53rpx;
+  color: rbga(29, 29, 38, 0.8);
+  font-weight: bold;
+}
+
+.movie-description {
+  font-size: 28rpx;
+  line-height: 42rpx;
+  color: rbga(151, 151, 151, 0.8);
+  margin: 30rpx 15%;
+}
+
+.footer {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 80%;
+  bottom: 50rpx;
+}
+
+.show-comment {
+  display: flex;
+  align-items: center;
+  border: 1px solid rgba(0,0,255,0.1);
+  border-radius: 10rpx;
+  padding: 28rpx;
+}
+
+.show-comment-icon {
+  width: 28rpx;
+  height: 28rpx;
+}
+
+.add-comment {
+  display: flex;
+  align-items: center;
+  border: 1px solid rgba(0,0,255,0.1);
+  border-radius: 10rpx;
+  padding: 28rpx;
+}
+
+.show-comment-text {
+  font-size: 28rpx;
+  margin-left: 15rpx;
+}
+
+.add-comment-icon {
+  width: 28rpx;
+  height: 28rpx;
+}
+
+.add-comment-text {
+  font-size: 28rpx;
+  margin-left: 15rpx;
+}
+
+

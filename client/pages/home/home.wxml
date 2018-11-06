@@ -1,0 +1,30 @@
+<!--client/pages/home/home.wxml-->
+<image src='/images/bg.png' class='bg'></image>
+<view wx:if="{{!userInfo}}">
+  <view class="unlogin-card">
+    <view class="unlogin-head"></view>
+    <view class="unlogin-info">
+      <view class="unlogin-text">未登录</view>
+      <view class="unlogin-tips">点击微信登录后方可查看影评</view>
+    </view>
+  </view>
+  <button class='unlogin-btn' open-type='getUserInfo' bindgetuserinfo='onTapLogin'>微信登录</button>
+</view>
+<view wx:else class="container">
+  <image class='hot-image' src='{{movie.image}}' bindtap='onTapHotImage'></image>
+  <view class='hot-title'>{{movie.title}}</view>
+  <view class='comment-row'>
+    <image class='avatar' src='/images/user.png'></image>
+    <view class='comment'>{{comment.user}}张胜男向你推荐了一部电影</view>
+  </view>
+  <view class='footer'>
+    <navigator class='btn' url='/pages/movie/movie'>
+      <image class='btn-icon' src='/images/hot.png'></image>
+      <view class='btn-text'>热门</view>
+    </navigator>
+    <navigator class='btn' url='/pages/user/user'>
+      <image class='btn-icon' src='/images/my.png'></image>
+      <view class='btn-text'>我的</view>
+    </navigator>
+  </view>
+</view>

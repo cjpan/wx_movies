@@ -1,0 +1,30 @@
+/* pages/movie/movie.wxss */
+.movie-card {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  height: 300rpx;
+  margin: 34rpx 54rpx;
+  box-shadow: 0 2rpx 13rpx 5rpx rgba(0, 0, 0, 0.1);
+}
+
+.movie-image {
+  width: 200rpx;
+  height: 100%;
+}
+
+.movie-info {
+  margin: 0 34rpx;
+}
+
+.movie-title {
+  font-size: 34rpx;
+  font-weight: bold;
+  color: rgba(29, 29, 38, 0.8);
+}
+
+.movie-category {
+  margin-top: 40rpx;
+  font-size: 26rpx;
+  color: rgba(51, 55, 61, 0.6);
+}
