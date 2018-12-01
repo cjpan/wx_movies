@@ -5,25 +5,36 @@
     <view class="unlogin-head"></view>
     <view class="unlogin-info">
       <view class="unlogin-text">未登录</view>
-      <view class="unlogin-tips">点击微信登录后可方便购物</view>
+      <view class="unlogin-tips">点击微信登录后方可查看影评</view>
     </view>
   </view>
-  <button class="unlogin-btn" open-type="getUserInfo" bindgetuserinfo="onTapLogin">微信登录</button>
+  <button wx:if='{{authState == 0}}' class='unlogin-btn' open-type='getUserInfo' bindgetuserinfo='onTapLogin'>微信登录</button>
+  <button wx:if='{{authState == 1}}' class='unlogin-btn' open-type='openSetting' bindopensetting='onTapLogin'>授权登录</button>
 </view>
-<view class="user-card" wx:else>
-  <view class="user-info">
-    <image class="user-head" src="{{userInfo.avatarUrl}}"></image>
-    <view class="user-name">{{userInfo.nickName}}</view>
+<view wx:else>
+  <view class='type-list-container'>
+    <view class="{{listType === 'favourite' ? 'check': 'uncheck'}}" bindtap='onTapListType' data-type='favourite'>收藏的影评</view>
+    <view class="{{listType === 'publish' ? 'check': 'uncheck'}}" bindtap='onTapListType' data-type='publish'>发布的影评</view>
   </view>
-  <view class="user-split"></view>
-  <view class="user-options">
-    <view class="option" bindtap="onTapAddress">
-      <view class="option-title">收货地址</view>
-      <image class="option-arrow" src="/images/grey-arrow.png"></image>
-    </view>
-    <view class="option" bindtap="onTapkf">
-      <view class="option-title">联系客服</view>
-      <image class="option-arrow" src="/images/grey-arrow.png"></image>
+  <view class="comment-card" wx:for='{{commentList}}' wx:key='id' wx:item='item' bindtap='onTapComment' data-id='{{item.commentId}}'>
+    <image class='movie-image' src='{{item.movieImage}}'></image>
+    <view class='comment-card-text'>
+      <view class='movie-title'>{{item.movieTitle}}</view>
+      <view class='comment-content' wx:if='{{item.content}}'>{{item.content}}</view>
+      <view class='comment-audio' wx:if='{{item.audio}}'>
+        <image src="/images/play.png" class='audio-icon'></image>
+        <view class='audio-duration'>{{item.duration}}</view>
+      </view>
+      <view wx:if="{{listType === 'favourite'}}" class='comment-userinfo'>
+        <image class='comment-avatar' src='{{item.avatar}}'></image>
+        <view class='comment-username'>{{item.username}}</view>
+      </view>
     </view>
   </view>
+  <view class="unlogin-card" wx:if="{{comments.length === 0}}">
+    <view class="unlogin-info">
+      <view class="unlogin-text">{{listType === 'favourite' ? '您暂时还没有收藏影评' : '您暂时还没有发布影评'}}</view>
+    </view>
+  </view>
+  <button class='footer' bindtap='onTapHome'>回到首页</button>
 </view>

@@ -1,0 +1,53 @@
+<!--pages/comment-edit/comment-edit.wxml-->
+<image src='/images/bg.png' class='bg'></image>
+<view wx:if="{{!userInfo}}">
+  <view class="unlogin-card">
+    <view class="unlogin-head"></view>
+    <view class="unlogin-info">
+      <view class="unlogin-text">未登录</view>
+      <view class="unlogin-tips">点击微信登录后方可查看影评</view>
+    </view>
+  </view>
+  <button wx:if='{{authState == 0}}' class='unlogin-btn' open-type='getUserInfo' bindgetuserinfo='onTapLogin'>微信登录</button>
+  <button wx:if='{{authState == 1}}' class='unlogin-btn' open-type='openSetting' bindopensetting='onTapLogin'>授权登录</button>
+</view>
+<view wx:else>
+  <view class='comment-card'>
+    <image class='movie-image' src='{{movie.image}}'></image>
+    <view class='movie-title'>{{movie.title}}</view>
+    <view class='comment-user'>
+      <image class='avatar' src='{{userInfo.avatarUrl}}'></image>
+      <view class='username'>{{userInfo.nickName}}的影评</view>
+    </view>
+    <view wx:if="{{commentType === 'text'}}" class='comment-container'>
+      <view class='quotation'>"</view>
+      <view class='comment-content-text'>
+        <textarea placeholder="输入你的影评内容..." focus='true' class='text-placeholder' bindinput='onInputComment' maxlength='500' value='{{contentValue}}' wx:if='{{isEditing}}'></textarea>
+        <view wx:else class='comment-content'>{{contentValue}}</view>
+      </view>
+      <view class='word-count' wx:if="{{isEditing}}">{{contentValue.length || 0}}/500</view>
+    </view>
+    <view wx:elif="{{commentType === 'audio'}}" class="audio-comment-container">
+      <view class='tips' wx:if='{{isEditing}}'>说出你的影评...</view>
+      <view wx:if="{{isEditing && (recordAuthState === 0 || recordAuthState === 2)}}" class="record-container {{(recordState === 0 || recordState === 2) ? '' : 'recording'}}" bindtouchstart='startRecord' bindtouchend='endRecord'>
+        <image src='/images/record.png' class='record-icon'></image>
+      </view>
+      <view wx:if='{{recordAudio}}' class='audio-container' bindtap='onTapAudio'>
+        <image src="{{isPlaying ? '/images/stop.png' : '/images/play.png'}}" class='audio-btn-icon'></image>
+        <view class='audio-duration'>{{recordAudio.duration}}</view>
+      </view>
+    </view>
+
+    <view class='btn-container' wx:if="{{!isEditing}}">
+      <view class='btn-wrapper' bindtap='onTapBack'>
+        <image class='btn-icon' src="/images/back.png"></image>
+        <view class='btn-text'>重新编辑</view>
+      </view>
+      <view class='btn-wrapper' bindtap='onTapPublish' data-id="{{movie.id}}">
+        <image class='btn-icon' src="/images/publish.png"></image>
+        <view class='btn-text'>发布影评</view>
+      </view>
+    </view>
+  </view>
+  <button class='btn-submit' disabled='{{contentValue.length === 0 && !recordAudio}}' bindtap='onTapSubmit' wx:if="{{isEditing}}">完成</button>
+</view>

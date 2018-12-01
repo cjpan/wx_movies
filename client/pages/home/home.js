@@ -10,53 +10,87 @@ Page({
    * 页面的初始数据
    */
   data: {
-    movie: null,
-    movieId: 1,
-    userInfo: 'abc',
+    userInfo: null,
+    authState: app.data.authState,
+    comment: null
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getMovie()
   },
 
-  getMovie() {
+  onTapLogin() {
+    app.login({
+      success: ({userInfo}) => {
+        this.setData({
+          userInfo,
+          authState: app.data.authState
+        })
+      },
+      error: (e) => {
+        console.log(e)
+        this.setData({
+          authState: app.data.authState
+        })
+      }
+    })
+    this.getRecommendation()
+  },
+
+  /**
+   * 获取推荐电影
+   */
+  getRecommendation() {
     wx.showLoading({
       title: '电影加载中',
     })
     qcloud.request({
-      url: config.service.movieDetail + this.data.movieId,
+      url: config.service.commentRecommend,
       success: result => {
         wx.hideLoading()
-        console.log(result)
         
         let data = result.data
         if (!data.code) {
           this.setData({
-            movie: data.data
+            comment: data.data
           })
         } else {
           wx.showToast({
-            title: '商品数据加载错误',
+            title: '电影加载错误',
           })
         }
       },
 
-      fail: () => {
+      fail: (e) => {
+        console.log(e)
         wx.hideLoading(),
         wx.showToast({
-          title: '商品数据加载错误',
+          title: '电影加载错误',
         })
       }
     })
   }, 
 
+  /**
+   * 跳转到电影详情页
+   */
   onTapHotImage () {
-    let movieId = this.data.movieId;
+    let movieId = this.data.comment.movieId;
     wx.navigateTo({
       url: '/pages/detail/detail?id=' + movieId,
+    })
+  },
+
+  /**
+   * 跳转到影评详情页
+   */
+  onTapComment() {
+    let commentId = this.data.comment.commentId
+    console.log(this.data.comment)
+    wx.navigateTo({
+      url: '/pages/comment-detail/comment-detail?commentId=' + commentId
     })
   },
 
@@ -71,41 +105,17 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.setData({
+      authState: app.data.authState
+    })
+    app.checkSession({
+      success: ({userInfo}) => {
+        this.setData({
+          userInfo
+        })
+        this.getRecommendation()
+      }
+    })
   },
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  }
 })

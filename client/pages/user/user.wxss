@@ -1,60 +1,114 @@
 /* pages/user/user.wxss */
-.user-card {
-  margin: 50rpx 27rpx 0;
-  background: #fff;
-  box-shadow: 0 2rpx 13rpx 5rpx rgba(0, 0, 0, 0.02);
-  border-radius: 13rpx;
+.type-list-container {
+  display: flex;
+  text-align: center;
+  justify-content: space-around;
+  margin: 30rpx;
+  font-size: 30rpx;
+  color: orange;
 }
 
-.user-info {
+.check {
+  border-bottom: 2px solid orange;
+}
+
+.uncheck {
+  border: none;
+}
+
+.comment-card {
+  position: relative;
+  display: flex;
+  margin: 30rpx;
+  background-color: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.02);
+  border-radius: 2rpx;
+  box-shadow: 0 2rpx 5rpx 13rpx rgba(0, 0, 0, 0.02);
+  height: 360rpx;
+}
+
+.comment-card:last-of-type {
+  margin-bottom: 120rpx;
+}
+
+.movie-image {
+  height: 360rpx;
+  width: 240rpx;
+  flex-shrink: 0;
+}
+
+.comment-card-text {
+  margin: 30rpx;
+}
+
+.movie-title {
+  font-size: 34rpx;
+  font-weight: bold;
+  margin-bottom: 20rpx;
+}
+
+.comment-content {
+  position: relative;
+  margin-top: 20rpx;
+  font-size: 30rpx;
+  line-height: 42rpx;
+  height: 168rpx;
+  overflow: hidden;
+}
+
+.comment-audio {
+  border: 1rpx solid #ddd;
+  text-align: center;
+  display: flex;
+  width: 300rpx;
+  height: 60rpx;
+  margin-top: 20rpx;
+  margin-left: 20rpx;
+  background-color: #ddd;
+  justify-content: flex-start;
+  align-items: center;
+  border-radius: 10rpx;
+}
+
+.audio-icon {
+  margin-left: 20rpx;
+  height: 40rpx;
+  width: 40rpx;
+}
+
+.audio-duration {
+  font-size: 30rpx;
+  line-height: 42rpx;
+  margin-left: 30rpx;
+}
+
+.comment-userinfo {
   display: flex;
   align-items: center;
-  height: 200rpx;
+  position: absolute;
+  bottom: 20rpx;
 }
 
-.user-head {
+.comment-avatar {
   flex-shrink: 0;
-  margin-left: 53rpx;
-  height: 100rpx;
-  width: 100rpx;
-  background: #f5e069;
+  width: 40rpx;
+  height: 40rpx;
   border-radius: 50%;
 }
 
-.user-name {
-  flex: 1;
-  margin: 0 31rpx;
-  font-weight: bold;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+.comment-username {
+  font-size: 28rpx;
+  margin-left: 10rpx;
 }
 
-.user-split {
-  height: 8rpx;
-  background: #f9f9f9;
-}
-
-.user-options .option {
-  display: flex;
-  align-items: center;
-  margin-left: 46rpx;
-  margin-right: 27rpx;
-  height: 128rpx;
-  border-bottom: 1px solid rgba(151, 151, 151, 0.2);
-}
-
-.user-options .option:last-child {
-  border-bottom: none;
-}
-
-.user-options .option-title {
-  flex: 1;
+.footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  align-content: center;
+  background-color: #eee;
+  height: 100rpx;
   font-size: 30rpx;
-  color: rgba(29, 29, 38, 0.8);
-}
-
-.user-options .option-arrow {
-  width: 11rpx;
-  height: 18rpx;
+  line-height: 100rpx;
 }

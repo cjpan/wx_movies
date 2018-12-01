@@ -23,16 +23,15 @@ var config = {
         // 上传图片接口
         uploadUrl: `${host}/weapp/upload`,
 
-        addOrder: `${host}/weapp/order`,
-        orderList: `${host}/weapp/order`,
-
-        addToTrolley: `${host}/weapp/trolley`,
-        trolleyList: `${host}/weapp/trolley`,
-        updateTrolley: `${host}/weapp/trolley`,
-
         addComment: `${host}/weapp/comment`,
+        commentRecommend: `${host}/weapp/comment/recommend`, //推荐电影
         commentList: `${host}/weapp/comment`,
-        
+        commentDetail: `${host}/weapp/comment/`,
+        userComment: `${host}/weapp/comment/user`,  //获取用户本人的影评
+
+        updateFavourite: `${host}/weapp/favourite`, //更新收藏
+        favourite: `${host}/weapp/favourite`, //收藏列表
+
         movieList: `${host}/weapp/movie`,
         movieDetail: `${host}/weapp/movie/`,
     }

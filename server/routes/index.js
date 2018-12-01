@@ -32,17 +32,17 @@ router.get('/message', controllers.message.get)
 // POST 用来处理微信转发过来的客服消息
 router.post('/message', controllers.message.post)
 
-// router.post('/order', validationMiddleware, controllers.order.add)
-// router.get('/order', validationMiddleware, controllers.order.list)
-
-// router.put('/trolley', validationMiddleware, controllers.trolley.add)
-// router.get('/trolley', validationMiddleware, controllers.trolley.list)
-// router.post('/trolley', validationMiddleware, controllers.trolley.update)
-
 // router.put('/comment', validationMiddleware, controllers.comment.add)
-// router.get('/comment', controllers.comment.list)
+router.get('/comment/recommend', validationMiddleware, controllers.comment.recommend)
+router.get('/comment/user', validationMiddleware, controllers.comment.user)
+router.get('/comment/:id', validationMiddleware, controllers.comment.detail)
+router.get('/comment', controllers.comment.list)
+router.post('/comment/', validationMiddleware, controllers.comment.add)
 
 router.get('/movie', controllers.movie.list)
 router.get('/movie/:id', controllers.movie.detail)
+
+router.get('/favourite', validationMiddleware, controllers.favourite.list)
+router.post('/favourite', validationMiddleware, controllers.favourite.update)
 
 module.exports = router

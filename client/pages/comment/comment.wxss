@@ -1,98 +1,76 @@
 /* pages/comment/comment.wxss */
-.product-card {
+.comment-card {
+  padding-top: 30rpx;
+  background: #fff;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  height: 250rpx;
+}
+
+.comment-card:last-child {
+  margin-bottom: 120rpx;
+}
+
+.comment-userinfo {
   display: flex;
   align-items: center;
-  padding-left: 26rpx;
-  height: 200rpx;
-  background: #fff;
-}
-
-.product-image {
-  flex-shrink: 0;
-  width: 160rpx;
-  height: 160rpx;
-}
-
-.product-info {
-  flex: 1;
-  padding: 27rpx;
-  height: 100%;
-  box-sizing: border-box;
-  font-size: 28rpx;
-  line-height: 40rpx;
-}
-
-.product-name {
-  color: rgba(29, 29, 38, 0.8);
-}
-
-.product-price {
-  margin-top: 12rpx;
-  font-weight: bold;
-}
-
-.comment-list {
-  margin-top: 16rpx;
-  background: #FFF;
-  box-shadow: 0 2rpx 13rpx 5rpx rgba(0, 0, 0, 0.02);
-}
-
-.comment-title {
-  padding: 25rpx 26rpx 14rpx;
-  font-size: 30rpx;
-  line-height: 42rpx;
-  color: rgba(29, 29, 38, 0.8);
-  font-weight: bold;
-}
-
-.comment-card {
-  display: flex;
-  padding: 30rpx 23rpx 0 26rpx;
-}
-
-.comment-card:last-child .comment-cnt {
-  border-bottom: none;
+  margin: 0 60rpx;
 }
 
 .comment-avatar {
   flex-shrink: 0;
-  width: 60rpx;
-  height: 60rpx;
+  width: 80rpx;
+  height: 80rpx;
   border-radius: 50%;
 }
 
-.comment-cnt {
-  flex: 1;
-  margin-left: 24rpx;
-  padding-bottom: 30rpx;
-  border-bottom: 1px solid rgba(151, 151, 151, 0.2);
-}
-
-.comment-top {
-  display: flex;
-  font-size: 25rpx;
-  line-height: 36rpx;
-  color: rgba(29, 29, 38, 0.5);
-}
-
 .comment-username {
-  flex: 1;
+  margin-left: 30rpx;
+  font-size: 30rpx;
 }
 
 .comment-content {
+  margin: 30rpx 60rpx 30rpx;
   font-size: 28rpx;
   line-height: 40rpx;
-  color: #1d1d26;
+  overflow: hidden;
+  height: 120rpx;
 }
 
-.preview-list {
+.comment-audio {
+  margin: 30rpx 60rpx 30rpx;
+  border: 1rpx solid #ddd;
+  text-align: center;
   display: flex;
-  margin-top: 16rpx;
+  width: 300rpx;
+  height: 60rpx;
+  margin-top: 20rpx;
+  background-color: #ddd;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  border-radius: 8rpx;
 }
 
-.preview-item {
-  margin-right: 10rpx;
-  width: 180rpx;
-  height: 180rpx;
-  border-radius: 10rpx;
+.audio-icon {
+  margin-left: 20rpx;
+  height: 40rpx;
+  width: 40rpx;
+}
+
+.audio-duration {
+  margin-left: 30rpx;
+  font-size: 30rpx;
+  line-height: 42rpx;
+}
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  align-content: center;
+  background-color: #eee;
+  height: 100rpx;
+  font-size: 30rpx;
+  line-height: 100rpx;
 }

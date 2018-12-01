@@ -1,25 +1,22 @@
 <!--pages/comment/comment.wxml-->
-<view class='product-card'>
-  <image class='product-image' src='{{product.image}}'></image>
-  <view class='product-info'>
-    <view class='product-name'>{{product.name}}</view>
-    <view class='product-price'>￥ {{product.price}}</view>
-  </view>
-</view>
-
-<view class='comment-list'>
-  <view class='comment-title'>{{commentList.length}}条评价</view>
-  <view class='comment-card' wx:for='{{commentList}}' wx:key='id' wx:for-item='item'>
-    <image class='comment-avatar' src='{{item.avatar}}'></image>
-    <view class='comment-cnt'>
-      <view class='comment-top'>
-        <view class='comment-username'>{{item.username}}</view>
-        <view class='comment-time'>{{item.createTime}}</view>
-      </view>
-      <view class='comment-content'>{{item.content}}</view>
-      <view class='preview-list' wx:if='{{item.images.length}}'>
-        <image class='preview-item' wx:for='{{item.images}}' wx:for-item='pitem' wx:key='*this' src='{{pitem}}' bindtap='previewImg' data-src='{{pitem}}' data-urls='{{item.images}}'></image>
-      </view>
+<view wx:if="{{commentList.length === 0}}">
+  <view class="unlogin-card">
+    <view class="unlogin-info">
+      <view class="unlogin-text">该影片暂无影评</view>
     </view>
   </view>
 </view>
+<view class='comment-list' wx:else>
+  <view class='comment-card' wx:for='{{commentList}}' wx:key='id' wx:for-item='item' data-id='{{item.id}}' bindtap='onTapComment'>
+    <view class='comment-userinfo'>
+      <image class='comment-avatar' src='{{item.avatar}}'></image>
+      <view class='comment-username'>{{item.username}}</view>
+    </view>
+    <view wx:if="{{item.content}}" class='comment-content'>{{item.content}}</view>
+    <view wx:if="{{item.audio}}" class='comment-audio'>
+      <image src='/images/play.png' class='audio-icon'></image>
+      <view class='audio-duration'>{{item.duration}}</view>
+    </view>
+  </view>
+</view>
+<button class='footer' bindtap='onTapHome'>回到首页</button>

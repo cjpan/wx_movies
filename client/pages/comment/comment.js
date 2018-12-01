@@ -10,106 +10,72 @@ Page({
    * 页面的初始数据
    */
   data: {
-    commentList: []
+    commentList: [],
+    movieId: null,
   },
 
-  previewImg (event) {
-    let target = event.currentTarget
-    let src = target.dataset.src
-    let urls = target.dataset.urls
-
-    wx.previewImage({
-      current: src,
-      urls: urls
-    })
-  },
-
-  getCommentList(id) {
+  /**
+   * 获取该影片的影评列表
+   */
+  getCommentList(movieId, cb) {
     qcloud.request({
-      url: config.service.commentList,
+      url: config.service.commentList + '?movieId=${movieId}',
       data: {
-        product_id: id
+        movieId
       },
       success: result => {
-        let data = result.data
-
-        if (!data.code) {
+        if (!result.data.code) {
+          let commentList = result.data.data
+          commentList.forEach(comment => {
+            comment.duration = Math.floor(comment.duration / 10) / 100 + '"' // 保留2位小数
+          })
           this.setData({
-            commentList: data.data.map(item => {
-              let itemDate = new Date(item.create_time)
-              item.createTime = _.formatTime(itemDate)
-              item.images = item.images ? item.images.split(';;') : []
-              return item
-            })
+            commentList
           })
         }
       },
+      fail: (e) => {
+        console.log(e)
+      },
+      complete: () => {
+        cb && cb()
+      }
+    })
+  },
+
+  /**
+   * 跳转到点击的影评详情
+   */
+  onTapComment(event) {
+    let commentId = event.currentTarget.dataset.id
+    wx.navigateTo({
+      url: `/pages/comment-detail/comment-detail?commentId=${commentId}`,
+    })
+  },
+
+  /**
+   * 回到首页
+   */
+  onTapHome() {
+    wx.navigateTo({
+      url: '/pages/home/home',
     })
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-    let product = {
-      id: options.id,
-      name: options.name,
-      price: options.price,
-      image: options.image
-    }
-    this.setData({
-      product: product
-    })
-    this.getCommentList(product.id)
-
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
+  onLoad: function(options) {
+    let movieId = options.movieId
+    this.getCommentList(movieId)
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {
-
+  onPullDownRefresh: function() {
+    this.getCommentList(this.data.movieId, () => {
+      wx.stopPullDownRefresh();
+    })
   },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  }
 })

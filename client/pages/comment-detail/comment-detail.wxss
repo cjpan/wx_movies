@@ -1,0 +1,126 @@
+/* pages/comment-detail/comment-detail.wxss */
+/* pages/detail/detail.wxss */
+.comment-card {
+  position: absolute;
+  top: 100rpx;
+  margin: 0 5%;
+  width: 90%;
+  border: 1px solid rgba(155, 155, 155, 0.4);
+  background: #fff;
+  box-shadow: 0 2rpx 13rpx 5rpx rgba(51, 55, 64, 0.02);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10rpx;
+}
+
+.movie-image {
+  position: relative;
+  top: -50rpx;
+  width: 180rpx;
+  height: 270rpx;
+}
+
+.movie-title  {
+  margin-top: -30rpx;
+  font-size: 32rpx;
+  color: rbga(29, 29, 38, 0.4);
+  font-weight: bold;
+  text-align: center;
+}
+
+.comment-detail-card {
+  margin-top: 50rpx;
+  width: 80%;
+  margin-bottom: 50rpx;
+}
+
+.comment-user {
+  display: flex;
+  align-items: center;
+}
+
+.avatar {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+}
+
+.comment-content-text {
+  margin-top: 30rpx;
+  margin-left: 106rpx;
+  font-size: 30rpx;
+  overflow: auto;
+  overflow-wrap: break-word;
+  height: 400rpx;
+}
+
+.username {
+  margin-left: 30rpx;
+  font-size: 32rpx;
+}
+
+.btn-container {
+  margin-top: 50rpx;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 80%;
+  bottom: 50rpx;
+}
+
+.star-comment {
+  display: flex;
+  align-items: center;
+  border: 1px solid rgba(0,0,255,0.1);
+  border-radius: 10rpx;
+  padding: 28rpx;
+}
+
+.comment-icon {
+  flex-shrink: 0;
+  width: 28rpx;
+  height: 28rpx;
+}
+
+.comment-text {
+  font-size: 28rpx;
+  margin-left: 15rpx;
+}
+
+.audio-container {
+  border: 1rpx solid #ddd;
+  margin-top: 30rpx;
+  margin-left: 106rpx;
+  text-align: center;
+  display: flex;
+  width: 350rpx;
+  height: 80rpx;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 300rpx;
+  border-radius: 10rpx;
+  background-color: #ddd;
+}
+
+.audio-icon {
+  height: 40rpx;
+  width: 40rpx;
+}
+
+.audio-duration {
+  font-size: 30rpx;
+  line-height: 42rpx;
+  margin-left: 30rpx;
+}
+
+.add-comment, .my-comment{
+  display: flex;
+  align-items: center;
+  border: 1px solid rgba(0,0,255,0.1);
+  border-radius: 10rpx;
+  padding: 28rpx;
+}

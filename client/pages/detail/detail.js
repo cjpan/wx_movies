@@ -11,12 +11,14 @@ Page({
     movie: {},
     haveComment: true
   },
-
+  
+  /**
+   * 获取电影详情
+   */
   getMovie(id) {
     if (!id) {
       id = 1
     }
-    console.log(id)
     wx.showLoading({
       title: '电影加载中'
     })
@@ -25,23 +27,25 @@ Page({
       url: config.service.movieDetail + id,
       success: result => {
         wx.hideLoading()
-
         let data = result.data
-        console.log(data)
-
         if (!data.code) {
           this.setData({
             movie: data.data
           })
         } else {
+          wx.showToast({
+            title: '电影加载失败',
+          })
           setTimeout(() => {
             wx.navigateBack()
           }, 2000)
         }
       },
-      fail: (result) => {
-        console.log(result)
+      fail: () => {
         wx.hideLoading()
+        wx.showToast({
+          title: '电影加载失败',
+        })
         setTimeout(()=> {
           wx.navigateBack()
         }, 2000)
@@ -49,149 +53,44 @@ Page({
     })
   },
 
-  // buy () {
-  //   wx.showLoading({
-  //     title: '商品购买中...',
-  //   })
+  /**
+   * 跳转到影评
+   */
+  onTapShowComment(event) {
+    let movieId = event.currentTarget.dataset.id
 
-  //   let product = Object.assign({
-  //     count: 1
-  //   }, this.data.product)
+    wx.navigateTo({
+      url: '/pages/comment/comment?movieId=' + movieId,
+    })
+  },
 
-  //   qcloud.request({
-  //     url: config.service.addOrder,
-  //     login: true,
-  //     method: 'POST',
-  //     data: {
-  //       list: [product],
-  //       isInstantBuy: true
-  //     },
-  //     success: result => {
-  //       wx.hideLoading()
+  /**
+   * 跳转到添加影评。传递电影id和评论的类型
+   */
+  onTapAddComment() {
+    let movieId = this.data.movie.id;
+    let commentType
 
-  //       let data = result.data
-        
-  //       if (!data.code) {
-  //         wx.showToast({
-  //           title: '购买成功',
-  //         })
-  //       } else {
-  //         wx.showToast({
-  //           title: '购买失败',
-  //         })
-  //         console.log(result)
-  //       }
-  //     },
-  //     fail: (result) => {
-  //       wx.hideLoading()
-  //       console.log(result)
-
-  //       wx.showToast({
-  //         title: '购买失败',
-  //       })
-  //     }
-  //   })
-  // },
-
-  // addToTrolley() {
-  //   wx.showLoading({
-  //     title: '正在添加到购物车...',
-  //   })
-
-  //   qcloud.request({
-  //     url: config.service.addToTrolley,
-  //     login: true,
-  //     method: 'PUT',
-  //     data: this.data.product,
-  //     success: result => {
-  //       wx.hideLoading()
-
-  //       console.log(result)
-  //       let data = result.data
-
-  //       if (!data.code) {
-  //         wx.showToast({
-  //           title: '已添加到购物车',
-  //         })
-  //       } else {
-  //         wx.showToast({
-  //           title: '添加失败',
-  //         })
-  //       }
-  //     },
-  //     fail: (result) => {
-  //       wx.hideLoading()
-  //       console.log(result)
-  //       wx.showToast({
-  //         title: '添加失败',
-  //       })
-  //     }
-  //   })
-  // },
-
-  // onTapCommentEntry() {
-  //   let product = this.data.product
-
-  //   if (product.commentCount) {
-  //     wx.navigateTo({
-  //       url: `/pages/comment/comment?id=${product.id}&price=${product.price}&name=${product.name}&image=${product.image}`,
-  //     })
-  //   }
-  // },
+    wx.showActionSheet({
+      itemList: ['文字', '音频'],
+      success: res => {
+        if (res.tapIndex === 0) {
+          commentType = 'text'
+        } else {
+          commentType = 'audio'
+        }
+        wx.navigateTo({
+          url: `/pages/comment-edit/comment-edit?movieId=${movieId}&commentType=${commentType}`,
+        })
+      }
+    })  
+  },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getMovie(options.id)
+    let movieId = options.id
+    this.getMovie(movieId)
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  }
 })

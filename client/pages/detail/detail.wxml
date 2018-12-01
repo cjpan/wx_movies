@@ -3,14 +3,14 @@
   <image class='movie-image' src='{{movie.image}}'></image>
   <view class='movie-title'>{{movie.title}}</view>
   <view class='movie-description'>{{movie.description}}</view>
-  <view class="footer">
-    <view class='show-comment'>
-      <image class='show-comment-icon' src='/images/show.png'></image>
-      <view class='show-comment-text'>查看评论</view>
+  <view class="btn-row">
+    <view class='comment-btn' bindtap='onTapShowComment' data-id='{{movie.id}}'>
+      <image class='btn-icon' src='/images/show.png'></image>
+      <view class='btn-text'>查看评论</view>
     </view>
-    <view class='add-comment'>
-      <image class='add-comment-icon' src='/images/comment.png'></image>
-      <view class='add-comment-text'>添加评论</view>
+    <view class='comment-btn' bindtap='onTapAddComment'>
+      <image class='btn-icon' src='/images/comment.png'></image>
+      <view class='btn-text'>我要评论</view>
     </view>
   </view>
 </view>

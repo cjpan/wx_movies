@@ -27,7 +27,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 1,
+			"current": 2,
 			"list": [
 				{
 					"id": 0,
@@ -39,7 +39,37 @@
 					"id": 1,
 					"name": "详情",
 					"pathName": "pages/detail/detail",
-					"query": "id=1"
+					"query": "movieId=4"
+				},
+				{
+					"id": 2,
+					"name": "comment-detail",
+					"pathName": "pages/comment-detail/comment-detail",
+					"query": "commentId=1"
+				},
+				{
+					"id": 3,
+					"name": "comment",
+					"pathName": "pages/comment/comment",
+					"query": "movieId=1"
+				},
+				{
+					"id": -1,
+					"name": "user",
+					"pathName": "pages/user/user",
+					"query": ""
+				},
+				{
+					"id": 5,
+					"name": "comment-edit",
+					"pathName": "pages/comment-edit/comment-edit",
+					"query": "movieId=4&commentType=audio"
+				},
+				{
+					"id": -1,
+					"name": "user",
+					"pathName": "pages/user/user",
+					"query": ""
 				}
 			]
 		}

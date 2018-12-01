@@ -1,0 +1,32 @@
+<!--pages/comment-detail/comment-detail.wxml-->
+<image class='bg' src='/images/bg.png'></image>
+
+<view wx:if="{{comment}}" class='comment-card'>
+  <image class='movie-image' src='{{comment.movieImage}}'></image>
+  <view class='movie-title'>{{comment.movieTitle}}</view>
+  <view class='comment-detail-card'>
+    <view class='comment-user'>
+      <image class='avatar' src='{{comment.avatar}}'></image>
+      <view class='username'>{{comment.userName}}的影评</view>
+    </view>
+    <view class='comment-content-text' wx:if='{{comment.content}}'>{{comment.content}}</view>
+    <view wx:elif="{{comment.audio}}" class="audio-container" bindtap='onTapAudio'>
+      <image src="{{isPlaying ? '/images/stop.png' : '/images/play.png'}}" class='audio-icon'></image>
+      <view class='audio-duration'>{{comment.duration}}</view>
+    </view>
+  </view>
+  <view class='btn-container'>
+    <view class='star-comment' bindtap='onTapStar'>
+      <image class='comment-icon' src="{{comment.favId ? '/images/star_filled.png' : '/images/star.png'}}"></image>
+      <view class='comment-text'>{{comment.favId ? '取消收藏': '收藏影评'}}</view>
+    </view>
+    <view wx:if="{{comment.user !== userInfo.openId && userComments.length > 0}}" class='my-comment' bindtap='onTapMyComment'>
+      <image class='comment-icon' src='/images/show.png'></image>
+      <view class='comment-text'>我的评论</view>
+    </view>
+    <view wx:else class='add-comment' bindtap='onTapEditComment'>
+      <image class='comment-icon' src='/images/comment.png'></image>
+      <view class='comment-text'>我要评论</view>
+    </view>
+  </view>
+</view>
